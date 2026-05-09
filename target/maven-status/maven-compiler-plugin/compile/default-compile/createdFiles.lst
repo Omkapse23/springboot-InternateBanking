@@ -1,0 +1,8 @@
+com\demo\dto\RegisterRequest.class
+com\demo\entity\User.class
+com\demo\config\SecurityConfig.class
+com\demo\InternetBankingApplication.class
+com\demo\service\UserService.class
+com\demo\controller\AuthController.class
+com\demo\repository\UserRepository.class
+com\demo\dto\LoginRequest.class
