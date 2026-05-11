@@ -3,7 +3,8 @@ package com.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import com.demo.dto.AuthResponse;
+import com.demo.security.JwtService;
 import com.demo.dto.LoginRequest;
 import com.demo.dto.RegisterRequest;
 import com.demo.entity.User;
@@ -17,6 +18,9 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtService jwtService;
 
     // REGISTER USER
     public String registerUser(RegisterRequest request) {
@@ -45,13 +49,13 @@ public class UserService {
     }
 
     // LOGIN USER
-    public String loginUser(LoginRequest request) {
+   public AuthResponse loginUser(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.getEmail())
                 .orElse(null);
 
         if (user == null) {
-            return "User not found";
+            throw new RuntimeException("User not found");
         }
 
         boolean isPasswordCorrect =
@@ -61,9 +65,13 @@ public class UserService {
                 );
 
         if (!isPasswordCorrect) {
-            return "Invalid Password";
+            throw new RuntimeException("Invalid Password");
         }
 
-        return "Login Successful";
+        // GENERATE JWT TOKEN
+        String token =
+                jwtService.generateToken(user.getEmail());
+
+        return new AuthResponse(token);
     }
 }

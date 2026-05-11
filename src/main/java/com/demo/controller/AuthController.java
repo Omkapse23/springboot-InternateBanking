@@ -3,6 +3,7 @@ package com.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.demo.dto.AuthResponse;
 import com.demo.dto.LoginRequest;
 import com.demo.dto.RegisterRequest;
 import com.demo.service.UserService;
@@ -23,7 +24,9 @@ public class AuthController {
 
     // Login API
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginRequest request) {
+    public AuthResponse loginUser(
+            @RequestBody LoginRequest request
+    ) {
 
         return userService.loginUser(request);
     }

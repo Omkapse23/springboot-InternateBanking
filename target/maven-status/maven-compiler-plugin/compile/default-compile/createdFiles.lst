@@ -1,8 +1,13 @@
-com\demo\dto\RegisterRequest.class
-com\demo\entity\User.class
+com\demo\security\CustomUserDetailsService.class
+com\demo\security\JwtAuthenticationFilter.class
 com\demo\config\SecurityConfig.class
 com\demo\InternetBankingApplication.class
 com\demo\service\UserService.class
-com\demo\controller\AuthController.class
 com\demo\repository\UserRepository.class
+com\demo\security\JwtService.class
+com\demo\dto\RegisterRequest.class
+com\demo\entity\User.class
+com\demo\controller\TestController.class
+com\demo\dto\AuthResponse.class
+com\demo\controller\AuthController.class
 com\demo\dto\LoginRequest.class
