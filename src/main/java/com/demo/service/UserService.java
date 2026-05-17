@@ -9,6 +9,7 @@ import com.demo.dto.LoginRequest;
 import com.demo.dto.RegisterRequest;
 import com.demo.entity.User;
 import com.demo.repository.UserRepository;
+import com.demo.enums.Role;
 
 @Service
 public class UserService {
@@ -40,7 +41,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         // DEFAULT ROLE
-        user.setRole("USER");
+        user.setRole(Role.USER);
 
         // SAVE USER
         userRepository.save(user);
